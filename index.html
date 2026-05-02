@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Quote | Naples Mobile Bar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        input[type=checkbox] { accent-color: #10b981; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-900 pb-20">
+
+    <!-- HEADER -->
+    <nav class="bg-black text-white py-6 px-6 sticky top-0 z-50 border-b border-white/10">
+        <div class="max-w-5xl mx-auto flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i data-lucide="martini" class="text-emerald-500 w-6 h-6"></i>
+                <span class="font-black italic tracking-tighter text-xl uppercase">Naples Mobile Bar</span>
+            </div>
+            <div class="text-[10px] font-black uppercase tracking-widest text-emerald-500 bg-emerald-500/10 px-3 py-1 rounded-full border border-emerald-500/20">
+                Official Pricing Portal
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6 mt-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <!-- LEFT: INPUTS & OPTIONS -->
+            <section class="lg:col-span-7 space-y-8">
+                <div class="bg-white rounded-[2rem] shadow-xl p-8 md:p-10 border border-slate-200">
+                    <h2 class="text-2xl font-black italic uppercase mb-8 flex items-center gap-3">
+                        <i data-lucide="settings-2" class="text-emerald-500"></i> Event Details
+                    </h2>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-10">
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Guest Count</label>
+                            <input type="number" id="guests" value="75" min="1" class="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 font-bold outline-emerald-500">
+                            <p class="text-[9px] text-slate-400 italic">1 Bartender per 75 guests recommended.</p>
+                        </div>
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-black uppercase text-slate-400 tracking-widest">Total Event Hours</label>
+                            <input type="number" id="hours" value="4" min="4" class="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 font-bold outline-emerald-500">
+                            <p class="text-[9px] text-slate-400 italic">4-hour minimum required.</p>
+                        </div>
+                    </div>
+
+                    <!-- PACKAGE ADD-ONS -->
+                    <h3 class="text-sm font-black uppercase mb-6 text-slate-400 tracking-widest">Package Add-Ons</h3>
+                    <div class="space-y-3" id="addons-container">
+                        <!-- Per Guest Items -->
+                        <label class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer hover:border-emerald-200 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" class="addon-check w-5 h-5" data-price="1.50" data-type="per-guest">
+                                <span class="text-sm font-bold">Bagged Ice</span>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500">$1.50 / guest</span>
+                        </label>
+
+                        <label class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer hover:border-emerald-200 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" class="addon-check w-5 h-5" data-price="1.75" data-type="per-guest">
+                                <span class="text-sm font-bold">Dry Goods (Cups/Napkins/Straws)</span>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500">$1.75 / guest</span>
+                        </label>
+
+                        <label class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer hover:border-emerald-200 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" class="addon-check w-5 h-5" data-price="1.50" data-type="per-guest">
+                                <span class="text-sm font-bold">Soft Drinks & Mixers</span>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500">$1.50 / guest</span>
+                        </label>
+
+                        <label class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer hover:border-emerald-200 transition-all">
+                            <div class="flex items-center gap-3">
+                                <input type="checkbox" class="addon-check w-5 h-5" data-price="2.50" data-type="per-guest">
+                                <span class="text-sm font-bold">Premium Mixers & Garnishes</span>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500">$2.50 / guest</span>
+                        </label>
+
+                        <!-- Flat Fee Items -->
+                        <div class="pt-4 space-y-3">
+                            <label class="flex items-center justify-between p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer hover:border-emerald-200 transition-all">
+                                <div class="flex items-center gap-3">
+                                    <input type="checkbox" id="tipJar" class="w-5 h-5">
+                                    <span class="text-sm font-bold">No Tip Jar (Add Gratuity)</span>
+                                </div>
+                                <span class="text-xs font-medium text-slate-500">$100 / bartender</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- RIGHT: QUOTE SUMMARY -->
+            <section class="lg:col-span-5">
+                <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-10 text-white shadow-2xl sticky top-32">
+                    <h3 class="text-lg font-black uppercase italic tracking-tighter mb-8 flex items-center gap-3 text-emerald-400">
+                        <i data-lucide="calculator"></i> Estimated Quote
+                    </h3>
+
+                    <div class="space-y-6 mb-10">
+                        <div class="flex justify-between border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold opacity-50 uppercase tracking-widest">Base Staffing</span>
+                            <span id="display-bartenders" class="font-bold">1 Bartender</span>
+                        </div>
+                        <div class="flex justify-between border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold opacity-50 uppercase tracking-widest">Base Package Total</span>
+                            <span id="display-base-price" class="font-bold">$220.00</span>
+                        </div>
+                        <div id="extra-hours-row" class="hidden justify-between border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold opacity-50 uppercase tracking-widest text-emerald-400">Extra Service Hours</span>
+                            <span id="display-extra-hours" class="font-bold text-emerald-400">+$0.00</span>
+                        </div>
+                        <div class="flex justify-between border-b border-white/10 pb-4">
+                            <span class="text-xs font-bold opacity-50 uppercase tracking-widest">Add-Ons Total</span>
+                            <span id="display-addons" class="font-bold">$0.00</span>
+                        </div>
+                    </div>
+
+                    <div class="text-center md:text-left mb-8">
+                        <p class="text-[10px] font-black uppercase opacity-40 mb-2 tracking-widest">Total Estimate</p>
+                        <p id="total-price" class="text-6xl font-black tracking-tighter text-emerald-400">$220.00</p>
+                    </div>
+
+                    <div class="bg-white/5 rounded-2xl p-4 border border-white/10 space-y-3">
+                        <div class="flex gap-3 text-emerald-400">
+                            <i data-lucide="info" class="w-4 h-4 shrink-0"></i>
+                            <p class="text-[9px] font-bold leading-relaxed uppercase tracking-tighter">
+                                Alcohol Disclosure: Client must provide all alcohol. We provide bar tools & expertise[cite: 3].
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        const guestsInput = document.getElementById('guests');
+        const hoursInput = document.getElementById('hours');
+        const addonChecks = document.querySelectorAll('.addon-check');
+        const tipJarCheck = document.getElementById('tipJar');
+
+        const displayBartenders = document.getElementById('display-bartenders');
+        const displayBasePrice = document.getElementById('display-base-price');
+        const displayExtraHours = document.getElementById('display-extra-hours');
+        const extraHoursRow = document.getElementById('extra-hours-row');
+        const displayAddons = document.getElementById('display-addons');
+        const totalPrice = document.getElementById('total-price');
+
+        function calculate() {
+            const guests = parseInt(guestsInput.value) || 0;
+            const hours = parseInt(hoursInput.value) || 4;
+
+            // 1. Staffing Logic: 1 bartender per 75 guests[cite: 3]
+            const bartenders = Math.max(1, Math.ceil(guests / 75));
+            displayBartenders.textContent = `${bartenders} Bartender${bartenders > 1 ? 's' : ''}`;
+
+            // 2. Base Price: $220 for 4 hours per bartender[cite: 3]
+            const baseStaffPrice = bartenders * 220;
+            displayBasePrice.textContent = `$${baseStaffPrice.toFixed(2)}`;
+
+            // 3. Extra Hours: $60/hr per bartender after the 4-hour minimum[cite: 3]
+            let extraHoursCost = 0;
+            if (hours > 4) {
+                extraHoursCost = (hours - 4) * 60 * bartenders;
+                extraHoursRow.classList.remove('hidden');
+                extraHoursRow.classList.add('flex');
+                displayExtraHours.textContent = `+$${extraHoursCost.toFixed(2)}`;
+            } else {
+                extraHoursRow.classList.add('hidden');
+                extraHoursRow.classList.remove('flex');
+            }
+
+            // 4. Add-Ons Logic[cite: 3]
+            let addonsTotal = 0;
+            addonChecks.forEach(check => {
+                if (check.checked) {
+                    const price = parseFloat(check.dataset.price);
+                    if (check.dataset.type === 'per-guest') {
+                        addonsTotal += price * guests;
+                    }
+                }
+            });
+
+            // 5. Gratuity (Tip Jar Option): $100 per bartender if no tip jar[cite: 3]
+            if (tipJarCheck.checked) {
+                addonsTotal += (bartenders * 100);
+            }
+
+            displayAddons.textContent = `$${addonsTotal.toFixed(2)}`;
+
+            // 6. Grand Total
+            const grandTotal = baseStaffPrice + extraHoursCost + addonsTotal;
+            totalPrice.textContent = `$${grandTotal.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
+        }
+
+        // Listeners
+        guestsInput.addEventListener('input', calculate);
+        hoursInput.addEventListener('input', calculate);
+        addonChecks.forEach(c => c.addEventListener('change', calculate));
+        tipJarCheck.addEventListener('change', calculate);
+
+        calculate();
+    </script>
+</body>
+</html>
