@@ -6,7 +6,7 @@ tailwind.config = {
         body: ["Outfit", "sans-serif"],
       },
       colors: {
-        green: {
+        wine: {
           DEFAULT: "#7b2d42",
           light: "#f5e8ec",
           mid: "#a84d6a",

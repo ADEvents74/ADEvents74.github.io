@@ -16,29 +16,30 @@
     <body class="text-white min-h-screen relative">
         <div class="fixed top-0 left-0 w-screen h-screen -z-10 backdrop-blur-2xl bg-[#1a0d11]/70"></div>
         
-        <nav class="bg-black/30 backdrop-blur-md border-b border-white/[0.06] sticky top-0 z-50 px-4 sm:px-12 h-14 sm:h-16 flex items-center justify-between">
-            <a href="/" class="flex items-center gap-2.5 no-underline">
-                <div class="w-6 h-6 bg-transparent rounded-lg flex items-center justify-center text-[17px]">
-                    <img src="/assets/icons/light/cocktail.svg" class="w-6 h-6">
+        <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+            <nav class="bg-black/60 backdrop-blur-md border border-white/[0.12] rounded-full h-12 sm:h-14 flex items-center justify-between gap-4 px-4 sm:px-6 w-full max-w-[1100px]">
+                <a href="/" class="flex items-center gap-2.5 no-underline">
+                    <img src="/assets/icons/light/cocktail.svg" class="w-5 h-5">
+                    <span class="font-black text-sm uppercase italic sm:text-lg text-white" data-en="Event Price Calculator" data-es="Cotizador de eventos">Event Price Calculator</span>
+                </a>
+                <div class="flex gap-1 items-center justify-center px-2 py-1 rounded-full border border-white/10">
+                    <img id="usa" src="/assets/icons/custom/usa.svg" class="object-cover h-6 w-6 cursor-pointer transition duration-100 ease-in-out">
+                    <img id="colombia" src="/assets/icons/custom/colombia.svg" class="object-cover h-6 w-6 cursor-pointer transition duration-100 ease-in-out">
                 </div>
-                <span class="font-black text-base uppercase italic sm:text-2xl text-white">Event Price Calculator</span>
-            </a>
-            <div class="text-[10px] sm:text-[11px] font-medium tracking-[0.12em] uppercase text-white/75 px-3 py-1.5 rounded-full border border-white/10">
-                2026 SERVICE RATES
-            </div>
-        </nav>
+            </nav>
+        </div>
 
-        <main class="max-w-[1100px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 sm:gap-7 items-start">
+        <main class="max-w-[1100px] mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 sm:gap-7 items-start">
             <div>
                 <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-white/75 mb-3.5">
-                    Event Details
+                    <span data-en="Event Details" data-es="Detalles del evento">Event Details</span>
                     <span class="flex-1 h-px bg-white/10"></span>
                 </div>
                 <div class="bg-black/50 backdrop-blur-md border border-white/[0.12] rounded-card p-5 sm:p-6 mb-5 animate-fade-up">
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2">Guests</label>
-                            <div class="flex items-center border-[1.5px] border-white/10 rounded-xl overflow-hidden bg-white/5 focus-within:border-green transition-colors">
+                            <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2" data-en="Guests" data-es="Invitados">Guests</label>
+                            <div class="flex items-center border-[1.5px] border-white/10 rounded-xl overflow-hidden bg-white/5 focus-within:border-wine transition-colors">
                                 <button type="button" onclick="nudge('guests',-5)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">−</button>
                                 <input
                                     type="number"
@@ -49,11 +50,11 @@
                                 >
                                 <button type="button" onclick="nudge('guests',5)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">+</button>
                             </div>
-                            <div class="text-[11px] text-white/75 mt-1.5">1 bartender per 75 guests</div>
+                            <div class="text-[11px] text-white/75 mt-1.5" data-en="1 bartender per 75 guests" data-es="1 bartender por cada 75 invitados">1 bartender per 75 guests</div>
                         </div>
                         <div>
-                            <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2">Hours</label>
-                            <div class="flex items-center border-[1.5px] border-white/10 rounded-xl overflow-hidden bg-white/5 focus-within:border-green transition-colors">
+                            <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2" data-en="Hours" data-es="Horas">Hours</label>
+                            <div class="flex items-center border-[1.5px] border-white/10 rounded-xl overflow-hidden bg-white/5 focus-within:border-wine transition-colors">
                                 <button type="button" onclick="nudge('hours',-1)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">−</button>
                                 <input
                                     type="number"
@@ -64,87 +65,87 @@
                                 >
                                 <button type="button" onclick="nudge('hours',1)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">+</button>
                             </div>
-                            <div class="text-[11px] text-white/75 mt-1.5">4-hour minimum</div>
+                            <div class="text-[11px] text-white/75 mt-1.5" data-en="4-hour minimum" data-es="Mínimo 4 horas">4-hour minimum</div>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-white/75 mb-3.5">
-                    Add-Ons
+                    <span data-en="Add-Ons" data-es="Adicionales">Add-Ons</span>
                     <span class="flex-1 h-px bg-white/10"></span>
                 </div>
                 <div class="grid grid-cols-2 gap-2.5 sm:gap-3 mb-5">
                     <div id="card-ice" onclick="toggle('ice')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-1 select-none">
-                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-wine backdrop-blur-sm flex items-center justify-center z-10">
                             <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                         </div>
                         <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
-                            <img class="addon-img w-full h-full object-cover object-[center_90%] transition-transform duration-500 ease-out" src="/assets/images/ice.png" alt="Bagged Ice">
-                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                            <img class="addon-img w-full h-full object-cover object-[center_90%] transition-transform duration-500 ease-out opacity-80" src="/assets/images/ice.png" alt="Bagged Ice">
+                            <div class="addon-overlay absolute inset-0 bg-wine/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
                         </div>
                         <div class="px-3 pt-2.5 pb-3">
-                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Bagged Ice</div>
-                            <div class="addon-price text-[12px] text-white/75">$1.50 / guest</div>
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5" data-en="Bagged Ice" data-es="Hielo en Bolsa">Bagged Ice</div>
+                            <div class="addon-price text-[12px] text-white/75" data-en="$1.50 / guest" data-es="{convert:1.50} / invitado">$1.50 / guest</div>
                         </div>
                     </div>
                     <div id="card-dry" onclick="toggle('dry')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-2 select-none">
-                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-wine backdrop-blur-sm flex items-center justify-center z-10">
                             <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                         </div>
                         <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
-                            <img class="addon-img w-full h-full object-cover transition-transform duration-500 ease-out" src="/assets/images/cups.png" alt="Dry Goods">
-                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                            <img class="addon-img w-full h-full object-cover transition-transform duration-500 ease-out opacity-80" src="/assets/images/cups.png" alt="Dry Goods">
+                            <div class="addon-overlay absolute inset-0 bg-wine/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
                         </div>
                         <div class="px-3 pt-2.5 pb-3">
-                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Dry Goods</div>
-                            <div class="addon-price text-[12px] text-white/75">$1.75 / guest</div>
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5" data-en="Dry Goods" data-es="Artículos de plástico">Dry Goods</div>
+                            <div class="addon-price text-[12px] text-white/75" data-en="$1.75 / guest" data-es="{convert:1.75} / invitado">$1.75 / guest</div>
                         </div>
                     </div>
                     <div id="card-soft" onclick="toggle('soft')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-3 select-none">
-                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-wine backdrop-blur-sm flex items-center justify-center z-10">
                             <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                         </div>
                         <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
-                            <img class="addon-img w-full h-full object-cover transition-transform duration-500 ease-out" src="/assets/images/softdrinks.png" alt="Soft Drinks & Mixers">
-                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                            <img class="addon-img w-full h-full object-cover transition-transform duration-500 ease-out opacity-80" src="/assets/images/softdrinks.png" alt="Soft Drinks & Mixers">
+                            <div class="addon-overlay absolute inset-0 bg-wine/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
                         </div>
                         <div class="px-3 pt-2.5 pb-3">
-                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Soft Drinks & Mixers</div>
-                            <div class="addon-price text-[12px] text-white/75">$1.50 / guest</div>
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5" data-en="Soft Drinks & Mixers" data-es="Gaseosas y mezcladores">Soft Drinks & Mixers</div>
+                            <div class="addon-price text-[12px] text-white/75" data-en="$1.50 / guest" data-es="{convert:1.50} / invitado">$1.50 / guest</div>
                         </div>
                     </div>
                     <div id="card-premium" onclick="toggle('premium')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-4 select-none">
-                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-wine backdrop-blur-sm flex items-center justify-center z-10">
                             <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                         </div>
                         <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
-                            <img class="addon-img w-full h-full object-cover object-[center_45%] transition-transform duration-500 ease-out" src="/assets/images/bar.png" alt="Premium Mixers & Garnishes">
-                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                            <img class="addon-img w-full h-full object-cover object-[center_45%] transition-transform duration-500 ease-out opacity-80" src="/assets/images/bar.png" alt="Premium Mixers & Garnishes">
+                            <div class="addon-overlay absolute inset-0 bg-wine/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
                         </div>
                         <div class="px-3 pt-2.5 pb-3">
-                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Premium Mixers & Garnishes</div>
-                            <div class="addon-price text-[12px] text-white/75">$2.50 / guest</div>
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5" data-en="Premium Mixers & Garnishes" data-es="Aderezos y mezcladoras premium">Premium Mixers & Garnishes</div>
+                            <div class="addon-price text-[12px] text-white/75" data-en="$2.50 / guest" data-es="{convert:2.50} / invitado" data-en="$2.50 / guest" data-es="$2.50 / invitado">$2.50 / guest</div>
                         </div>
                     </div>
                     <div id="card-tip" onclick="toggle('tip')" class="addon-card col-span-2 bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-5 select-none">
-                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-wine backdrop-blur-sm flex items-center justify-center z-10">
                             <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
                         </div>
                         <div class="relative h-[100px] sm:h-[110px] overflow-hidden rounded-t-[14px]">
-                            <img class="addon-img w-full h-full object-cover object-[center_60%] transition-transform duration-500 ease-out" src="/assets/images/gratuity.png" alt="Gratuity">
-                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                            <img class="addon-img w-full h-full object-cover object-[center_60%] transition-transform duration-500 ease-out opacity-80" src="/assets/images/gratuity.png" alt="Gratuity">
+                            <div class="addon-overlay absolute inset-0 bg-wine/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
                         </div>
                         <div class="px-3 pt-2.5 pb-3">
-                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Include Gratuity (No Tip Jar)</div>
-                            <div class="addon-price text-[12px] text-white/75">$100 / bartender</div>
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5" data-en="Include Gratuity (No Tip Jar)" data-es="Incluir propina (No Tip Jar)">Include Gratuity (No Tip Jar)</div>
+                            <div class="addon-price text-[12px] text-white/75" data-en="$100 / bartender" data-es="{convert:100.00} / bartender">$100 / bartender</div>
                         </div>
                     </div>
                 </div>
                 <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-white/75 mb-3.5">
-                    Event Location
+                    <span data-en="Event Location" data-es="Ubicación del evento">Event Location</span>
                     <span class="flex-1 h-px bg-white/10"></span>
                 </div>
                 <div class="bg-black/50 backdrop-blur-md border border-white/[0.12] rounded-card p-5 sm:p-6 mb-5 animate-fade-up">
-                    <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2">Venue Address</label>
+                    <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2" data-en="Venue Address" data-es="Dirección del evento">Venue Address</label>
                     <div class="relative flex gap-2 mb-3">
                         <div class="relative flex-1">
                             <input
@@ -152,14 +153,16 @@
                                 type="text"
                                 autocomplete="off"
                                 placeholder="Search address or drop pin on map..."
-                                class="w-full h-11 pl-4 pr-9 rounded-xl border-[1.5px] border-white/10 bg-white/5 text-sm text-white outline-none focus:border-green transition-colors placeholder:text-white/25"
+                                class="w-full h-11 pl-4 pr-9 rounded-xl border-[1.5px] border-white/10 bg-white/5 text-sm text-white outline-none focus:border-wine transition-colors placeholder:text-white/25"
+                                data-en="Search address or drop pin on map..."
+                                data-es="Busca una dirección o marca el punto en el mapa..."
                             >
                             <button id="addr-clear" onclick="clearLocation()" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-white/75">
                                 <img class="h-4 w-4 opacity-40" src="/assets/icons/light/close.svg">
                             </button>
                             <ul id="autocomplete-results" class="absolute top-full left-0 w-full mt-1.5 bg-[#2a1020]/90 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)] z-50 hidden max-h-[200px] overflow-y-auto"></ul>
                         </div>
-                        <button onclick="searchAddress()" class="h-11 px-3 bg-green text-white rounded-xl text-sm font-semibold hover:bg-green/90 active:scale-95 transition-all whitespace-nowrap">
+                        <button onclick="searchAddress()" class="h-11 px-3 bg-wine text-white rounded-xl text-sm font-semibold hover:bg-wine/90 active:scale-95 transition-all whitespace-nowrap">
                             <img src="/assets/icons/light/search.svg">
                         </button>
                     </div>
@@ -171,42 +174,42 @@
                             <div class="text-[11px] text-white/75 mt-0.5" id="travel-dist-label">—</div>
                         </div>
                         <div class="text-right flex-shrink-0">
-                            <div class="text-[13px] font-bold text-green" id="travel-fee-label">$0</div>
-                            <div class="text-[10px] text-white/75 uppercase tracking-wide">Travel fee</div>
+                            <div class="text-[13px] font-bold text-wine-readable" id="travel-fee-label">$0</div>
+                            <div class="text-[10px] text-white/75 uppercase tracking-wide" data-en="Travel fee" data-es="Tarifa de desplazamiento">Travel fee</div>
                         </div>
                     </div>
-                    <div class="mt-2.5 text-[11px] text-white/75 leading-relaxed">
+                    <div class="mt-2.5 text-[11px] text-white/75 leading-relaxed" data-en="Travel fee is free within 20 miles ・ $1/mi within 21-30 miles ・ $1.50/mi beyond 31+ miles." data-es="Tarifa por desplazamiento es gratis dentro de 32 km ・ {convert:0.62}/km entre 33-48 km ・ {convert:0.93}/km a partir de 49+ km.">
                         Travel fee is free within 20 miles ・ $1/mi within 21-30 miles ・ $1.50/mi beyond 31+ miles.
                     </div>
                 </div>
             </div>
-            <aside class="lg:sticky lg:top-20">
+            <aside class="lg:sticky lg:24">
                 <div class="quote-panel bg-black/50 backdrop-blur-md border border-white/[0.1] rounded-[24px] p-6 sm:p-7 text-white overflow-hidden relative">
-                    <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.15em] uppercase text-green-mid mb-5">
+                    <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.15em] uppercase text-wine-mid mb-5">
                         <img src="/assets/icons/custom/calculator.svg" class="h-[1em] w-[1em] object-contain">
-                        Your Estimate
+                        <span data-en="Your Estimate" data-es="Tu Presupuesto">Your Estimate</span>
                     </div>
                     <div class="mb-2">
                         <div id="row-base" class="flex justify-between items-center py-2.5 text-sm">
-                            <span class="text-white/75 font-normal">Base package</span>
-                            <span class="font-semibold text-white" id="disp-base">$220.00</span>
+                            <span class="text-white/75 font-normal" data-en="Base package" data-es="Paquete básico">Base package</span>
+                            <span class="font-semibold text-white" id="disp-base" data-translatable="true">$220.00</span>
                         </div>
                         <div id="row-extra" class="hidden flex justify-between items-center py-2.5 border-t border-white/[0.06] text-sm">
-                            <span class="text-white/75 font-normal">Extra hours</span>
-                            <span class="font-semibold text-green-mid" id="disp-extra">+$0.00</span>
+                            <span class="text-white/75 font-normal" data-en="Extra hours" data-es="Horas extra">Extra hours</span>
+                            <span class="font-semibold text-wine-mid" id="disp-extra">+$0.00</span>
                         </div>
                         <div id="row-addons" class="hidden flex justify-between items-center py-2.5 border-t border-white/[0.06] text-sm">
-                            <span class="text-white/75 font-normal">Add-ons</span>
+                            <span class="text-white/75 font-normal" data-en="Add-ons" data-es="Adicionales">Add-ons</span>
                             <span class="font-semibold text-white" id="disp-addons">$0.00</span>
                         </div>
                         <div id="row-travel" class="hidden flex justify-between items-center py-2.5 border-t border-white/[0.06] text-sm">
-                            <span class="text-white/75 font-normal">Travel fee</span>
+                            <span class="text-white/75 font-normal" data-en="Travel fee" data-es="Tarifa de desplazamiento">Travel fee</span>
                             <span class="font-semibold text-white" id="disp-travel">$0.00</span>
                         </div>
                     </div>
                     <div class="h-px bg-white/10 mb-5"></div>
                     <div class="text-center mb-1.5">
-                        <div class="text-[11px] tracking-[0.14em] uppercase text-white/50 mb-1.5">Total Estimate</div>
+                        <div class="text-[11px] tracking-[0.14em] uppercase text-white/50 mb-1.5" data-en="Total Estimate" data-es="Presupuesto Total">Total Estimate</div>
                         <div id="total-number" class="font-regular font-bold text-[44px] sm:text-[52px] text-white leading-none tracking-[-0.02em]">
                             $220<span class="text-[22px] sm:text-[26px] align-super font-bold">.00</span>
                         </div>
@@ -215,7 +218,7 @@
                         <img src="/assets/icons/light/cocktail.svg" class="h-[1em] w-[1em]">
                         <span id="disp-bartenders">1 bartender ・ 4 hours</span>
                     </div>
-                    <div class="mt-2 px-3.5 py-3 rounded-full text-xs text-green-readable bg-green-readable/5 border border-green-readable/50 leading-none text-center">
+                    <div class="mt-2 px-3.5 py-3 rounded-full text-xs text-wine-readable bg-wine-readable/5 border border-wine-readable/50 leading-none text-center" data-en="Alcohol is provided by the Client. We bring certified bartenders, tools & expertise." data-es="El alcohol lo pone el cliente. Nosotros traemos los bartenders certificados, las herramientas y la experiencia.">
                         Alcohol is provided by the Client. We bring certified bartenders, tools & expertise.
                     </div>
                 </div>

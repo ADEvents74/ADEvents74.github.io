@@ -1,7 +1,7 @@
 html {
   overflow-y: scroll;
   background-image: url('/assets/images/bar.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-attachment: fixed;
   background-color: #1a0d11;
@@ -75,7 +75,7 @@ input[type=number] {
 }
 
 #total-number {
-  transition: opacity 0.18s ease;
+  transition: opacity 0.2s ease-in;
 }
 
 #event-map {
