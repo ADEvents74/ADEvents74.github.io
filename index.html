@@ -1,206 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service Quote | Naples Mobile Bar</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap');
-        body { font-family: 'Inter', sans-serif; }
-        input[type=checkbox] { accent-color: #10b981; }
-    </style>
-</head>
-<body class="bg-slate-500 text-slate-900 pb-20">
-
-    <div class="fixed inset-0 -z-10 overflow-hidden">
-        <div class="absolute inset-0 bg-[url('/assets/bar.png')] bg-cover bg-center scale-110"></div>
-        <div class="absolute inset-0 backdrop-blur-md bg-transparent"></div>
-    </div>
-
-    <nav class="bg-black text-white py-6 px-6 sticky top-0 z-50 border-b border-white/10">
-        <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <img src="/assets/cocktail.svg" class="w-8 h-8">
-                <span class="font-black italic tracking-tighter text-xl uppercase">Naples Mobile Bar</span>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Naples Mobile Bar</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+        <link rel="stylesheet" href="/styles/global.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/scripts/tailwind.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    </head>
+    <body class="text-white min-h-screen relative">
+        <div class="fixed top-0 left-0 w-screen h-screen -z-10 backdrop-blur-2xl bg-[#1a0d11]/70"></div>
+        
+        <nav class="bg-black/30 backdrop-blur-md border-b border-white/[0.06] sticky top-0 z-50 px-4 sm:px-12 h-14 sm:h-16 flex items-center justify-between">
+            <a href="/" class="flex items-center gap-2.5 no-underline">
+                <div class="w-6 h-6 bg-transparent rounded-lg flex items-center justify-center text-[17px]">
+                    <img src="/assets/icons/light/cocktail.svg" class="w-6 h-6">
+                </div>
+                <span class="font-black text-base uppercase italic sm:text-2xl text-white">Naples Mobile Bar</span>
+            </a>
+            <div class="text-[10px] sm:text-[11px] font-medium tracking-[0.12em] uppercase text-white/75 px-3 py-1.5 rounded-full border border-white/10">
+                2026 SERVICE RATES
             </div>
-            <div class="ml-2 text-[9px] font-bold text-slate-500 uppercase tracking-widest">
-                2026 Rate Schedule
-            </div>
-        </div>
-    </nav>
+        </nav>
 
-    <main class="max-w-5xl mx-auto px-6 mt-12">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            
-            <section class="lg:col-span-7 space-y-8">
-                <div class="bg-white rounded-[2rem] shadow-xl p-8 md:p-10 border border-slate-200">
-                    <h2 class="text-2xl font-black italic uppercase mb-8 flex items-center gap-3">
-                        <i data-lucide="users" class="text-emerald-500"></i> Guest & Service Information
-                    </h2>
-
-                    <div class="space-y-6 mb-10">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div class="space-y-3">
-                                <label class="text-[10px] font-black uppercase text-black tracking-widest">Guest Count</label>
-                                <input type="number" id="guests" value="75" min="1" class="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 font-bold">
+        <main class="max-w-[1100px] mx-auto px-4 sm:px-6 pt-6 sm:pt-8 pb-12 grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 sm:gap-7 items-start">
+            <div>
+                <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-white/75 mb-3.5">
+                    Event Details
+                    <span class="flex-1 h-px bg-white/10"></span>
+                </div>
+                <div class="bg-black/50 backdrop-blur-md border border-white/[0.12] rounded-card p-5 sm:p-6 mb-5 animate-fade-up">
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2">Guests</label>
+                            <div class="flex items-center border-[1.5px] border-white/10 rounded-xl overflow-hidden bg-white/5 focus-within:border-green transition-colors">
+                                <button type="button" onclick="nudge('guests',-5)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">−</button>
+                                <input
+                                    type="number"
+                                    id="guests"
+                                    value="75"
+                                    min="1"
+                                    class="flex-1 h-12 sm:h-[52px] bg-transparent text-center text-lg sm:text-[22px] font-semibold text-white outline-none min-w-0"
+                                >
+                                <button type="button" onclick="nudge('guests',5)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">+</button>
                             </div>
-                            <div class="space-y-3">
-                                <label class="text-[10px] font-black uppercase text-black tracking-widest">Event Hours</label>
-                                <input type="number" id="hours" value="4" min="4" class="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 font-bold">
-                            </div>
+                            <div class="text-[11px] text-white/75 mt-1.5">1 bartender per 75 guests</div>
                         </div>
-                    </div>
-
-                    <h3 class="text-sm font-black uppercase mb-6 text-black tracking-widest text-center">Add-On Packages</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <label class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer">
-                            <input type="checkbox" class="addon-check w-5 h-5" data-price="1.50">
-                            <span class="text-xs font-bold uppercase">Bagged Ice ($1.50/g)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer">
-                            <input type="checkbox" class="addon-check w-5 h-5" data-price="1.75">
-                            <span class="text-xs font-bold uppercase">Dry Goods ($1.75/g)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer">
-                            <input type="checkbox" class="addon-check w-5 h-5" data-price="1.50">
-                            <span class="text-xs font-bold uppercase">Soft Drinks ($1.50/g)</span>
-                        </label>
-                        <label class="flex items-center gap-3 p-4 bg-slate-50 rounded-2xl border border-slate-100 cursor-pointer">
-                            <input type="checkbox" class="addon-check w-5 h-5" data-price="2.50">
-                            <span class="text-xs font-bold uppercase">Premium Mixers ($2.50/g)</span>
-                        </label>
-                    </div>
-
-                    <div class="mt-6">
-                        <label class="flex items-center justify-between p-4 bg-emerald-50 rounded-2xl border border-emerald-100 cursor-pointer">
-                            <div class="flex items-center gap-3">
-                                <input type="checkbox" id="tipJar" class="w-5 h-5">
-                                <span class="text-sm font-black uppercase tracking-tight text-emerald-900">No Tip Jar (Add Gratuity)</span>
+                        <div>
+                            <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2">Hours</label>
+                            <div class="flex items-center border-[1.5px] border-white/10 rounded-xl overflow-hidden bg-white/5 focus-within:border-green transition-colors">
+                                <button type="button" onclick="nudge('hours',-1)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">−</button>
+                                <input
+                                    type="number"
+                                    id="hours"
+                                    value="4"
+                                    min="4"
+                                    class="flex-1 h-12 sm:h-[52px] bg-transparent text-center text-lg sm:text-[22px] font-semibold text-white outline-none min-w-0"
+                                >
+                                <button type="button" onclick="nudge('hours',1)" class="w-10 sm:w-11 h-12 sm:h-[52px] flex-shrink-0 text-xl font-light text-white/75 hover:bg-white/10 hover:text-white transition-colors">+</button>
                             </div>
-                            <span class="text-[10px] font-bold text-emerald-700">+$100 / bartender</span>
-                        </label>
-                    </div>
-
-                    <div class="space-y-3 mt-10">
-                        <label class="text-[10px] font-black uppercase text-black tracking-widest">Event Location ZIP Code</label>
-                        <input type="text" id="zipInput" placeholder="e.g. 34102" maxlength="5" class="w-full p-4 bg-slate-50 rounded-2xl border border-slate-100 font-bold outline-emerald-500">
-                        <p id="zoneStatus" class="text-[10px] font-bold text-slate-400 italic">Enter a ZIP to calculate travel.</p>
+                            <div class="text-[11px] text-white/75 mt-1.5">4-hour minimum</div>
+                        </div>
                     </div>
                 </div>
-            </section>
-
-            <section class="lg:col-span-5">
-                <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-10 text-white shadow-2xl sticky top-32">
-                    <h3 class="text-lg font-black uppercase italic tracking-tighter mb-8 flex items-center gap-3 text-emerald-400">
-                        <i data-lucide="calculator"></i> Estimated Quote
-                    </h3>
-
-                    <div class="space-y-4 mb-8 text-[11px] uppercase font-bold tracking-widest">
-                        <div class="flex justify-between border-b border-white/5 pb-3">
-                            <span class="opacity-40">Bartenders Required</span>
-                            <span id="display-bartenders">1</span>
+                <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-white/75 mb-3.5">
+                    Event Location
+                    <span class="flex-1 h-px bg-white/10"></span>
+                </div>
+                <div class="bg-black/50 backdrop-blur-md border border-white/[0.12] rounded-card p-5 sm:p-6 mb-5 animate-fade-up">
+                    <label class="block text-[11px] font-semibold tracking-[0.1em] uppercase text-white/75 mb-2">Venue Address</label>
+                    <div class="relative flex gap-2 mb-3">
+                        <div class="relative flex-1">
+                            <input
+                                id="addr-input"
+                                type="text"
+                                autocomplete="off"
+                                placeholder="Search address or drop pin on map..."
+                                class="w-full h-11 pl-4 pr-9 rounded-xl border-[1.5px] border-white/10 bg-white/5 text-sm text-white outline-none focus:border-green transition-colors placeholder:text-white/25"
+                            >
+                            <button id="addr-clear" onclick="clearLocation()" class="absolute right-2.5 top-1/2 -translate-y-1/2 w-5 h-5 rounded-full flex items-center justify-center text-white/75">
+                                <img class="h-4 w-4 opacity-40" src="/assets/icons/light/close.svg">
+                            </button>
+                            <ul id="autocomplete-results" class="absolute top-full left-0 w-full mt-1.5 bg-[#2a1020]/90 backdrop-blur-md border border-white/10 rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.3)] z-50 hidden max-h-[200px] overflow-y-auto"></ul>
                         </div>
-                        <div class="flex justify-between border-b border-white/5 pb-3">
-                            <span class="opacity-40">Service Subtotal</span>
-                            <span id="display-base-price">$220.00</span>
+                        <button onclick="searchAddress()" class="h-11 px-3 bg-green text-white rounded-xl text-sm font-semibold hover:bg-green/90 active:scale-95 transition-all whitespace-nowrap">
+                            <img src="/assets/icons/light/search.svg">
+                        </button>
+                    </div>
+                    <div id="event-map" class="w-full border border-white/10"></div>
+                    <div id="travel-badge" class="hidden mt-3 flex items-center gap-3 px-4 py-3 bg-white/10 border border-white/10 rounded-xl">
+                        <img src="/assets/icons/custom/location.svg" class="w-6 h-6">
+                        <div class="flex-1 min-w-0">
+                            <div class="text-[12px] font-semibold text-white truncate" id="travel-place">—</div>
+                            <div class="text-[11px] text-white/75 mt-0.5" id="travel-dist-label">—</div>
                         </div>
-                        <div class="flex justify-between border-b border-white/5 pb-3 text-emerald-400">
-                            <span class="opacity-60">Travel Fee</span>
-                            <span id="display-travel">$0.00</span>
-                        </div>
-                        <div class="flex justify-between border-b border-white/5 pb-3">
-                            <span class="opacity-40">Add-Ons Total</span>
-                            <span id="display-addons">$0.00</span>
+                        <div class="text-right flex-shrink-0">
+                            <div class="text-[13px] font-bold text-green" id="travel-fee-label">$0</div>
+                            <div class="text-[10px] text-white/75 uppercase tracking-wide">Travel fee</div>
                         </div>
                     </div>
-
-                    <div class="text-center md:text-left mb-8">
-                        <p id="total-price" class="text-6xl font-black tracking-tighter text-emerald-400">$220.00</p>
-                    </div>
-
-                    <div class="text-[9px] uppercase font-bold text-white/30 tracking-widest leading-relaxed">
-                        Prices based on Bartender Service Pricing 2026. Quote valid for 30 days.
+                    <div class="mt-2.5 text-[11px] text-white/75 leading-relaxed">
+                        Travel fee is free within 20 miles ・ $1/mi within 21-30 miles ・ $1.50/mi beyond 31+ miles.
                     </div>
                 </div>
-            </section>
-        </div>
-    </main>
-
-    <script>
-        lucide.createIcons();
-
-        // ZIP distance data (Distance from 34110)
-        // Add 33905 to your existing ZIP database
-        const zipDatabase = {
-            "34110": 0, "34109": 5, "34108": 6, "34103": 10, "34102": 12, 
-            "34119": 8, "34120": 15, "34112": 14, "34113": 18, "34114": 25, 
-            "34145": 28, "34135": 10, "34134": 8, "33928": 15, "33967": 22, 
-            "33901": 35, "33908": 28, "33912": 30, "33919": 32,
-            "33905": 38 // <--- Add this line (Approx 38 miles)
-        };
-
-        const zipInput = document.getElementById('zipInput');
-        const guestsInput = document.getElementById('guests');
-        const hoursInput = document.getElementById('hours');
-        const addonChecks = document.querySelectorAll('.addon-check');
-        const tipJarCheck = document.getElementById('tipJar');
-
-        function calculate() {
-            const guests = parseInt(guestsInput.value) || 0;
-            const hours = parseInt(hoursInput.value) || 4;
-            if (hours < 4) {
-                hoursInput.value = "4";
-                hours = 4;
-            };
-            const zip = zipInput.value.trim();
-
-            // 1. Staffing Logic[cite: 3]
-            const bartenders = Math.max(1, Math.ceil(guests / 75));
-            document.getElementById('display-bartenders').textContent = bartenders;
-
-            // 2. Base Price Logic ($220 for 4hrs, $60/hr extra)[cite: 3]
-            const basePrice = (bartenders * 220) + (hours > 4 ? (hours - 4) * 60 * bartenders : 0);
-            document.getElementById('display-base-price').textContent = `$${basePrice.toFixed(2)}`;
-
-            // 3. Travel Fee Logic[cite: 3]
-            let miles = zipDatabase[zip] || 0;
-            let travelFee = 0;
-            const statusEl = document.getElementById('zoneStatus');
-
-            if (zipDatabase.hasOwnProperty(zip)) {
-                statusEl.textContent = `Recognized ZIP: approx. ${miles} miles from base.`;
-                statusEl.className = "text-[10px] font-bold text-emerald-500 italic";
-            } else if (zip.length === 5) {
-                statusEl.textContent = "ZIP not in primary zone. Free travel (0-20mi) assumed.";
-                statusEl.className = "text-[10px] font-bold text-amber-500 italic";
-            }
-
-            if (miles > 20 && miles <= 30) {
-                travelFee = (miles - 20) * 1.00;
-            } else if (miles > 30) {
-                travelFee = (10 * 1.00) + ((miles - 30) * 1.50);
-            }
-            document.getElementById('display-travel').textContent = `$${travelFee.toFixed(2)}`;
-
-            // 4. Add-Ons[cite: 3]
-            let addonsTotal = 0;
-            addonChecks.forEach(check => {
-                if (check.checked) addonsTotal += parseFloat(check.dataset.price) * guests;
-            });
-            if (tipJarCheck.checked) addonsTotal += (bartenders * 100);
-            document.getElementById('display-addons').textContent = `$${addonsTotal.toFixed(2)}`;
-
-            // 5. Total
-            const total = basePrice + travelFee + addonsTotal;
-            document.getElementById('total-price').textContent = `$${total.toLocaleString(undefined, {minimumFractionDigits: 2})}`;
-        }
-
-        [zipInput, guestsInput, hoursInput, tipJarCheck].forEach(el => el.addEventListener('input', calculate));
-        addonChecks.forEach(c => c.addEventListener('change', calculate));
-
-        calculate();
-    </script>
-</body>
+                <div class="flex items-center gap-2.5 text-[10px] sm:text-[11px] font-semibold tracking-[0.14em] uppercase text-white/75 mb-3.5">
+                    Add-Ons
+                    <span class="flex-1 h-px bg-white/10"></span>
+                </div>
+                <div class="grid grid-cols-2 gap-2.5 sm:gap-3">
+                    <div id="card-ice" onclick="toggle('ice')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-1 select-none">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                            <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
+                        </div>
+                        <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
+                            <img class="addon-img w-full h-full object-cover object-[center_90%] transition-transform duration-500 ease-out" src="/assets/images/ice.png" alt="Bagged Ice">
+                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                        </div>
+                        <div class="px-3 pt-2.5 pb-3">
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Bagged Ice</div>
+                            <div class="addon-price text-[12px] text-white/75">$1.50 / guest</div>
+                        </div>
+                    </div>
+                    <div id="card-dry" onclick="toggle('dry')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-2 select-none">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                            <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
+                        </div>
+                        <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
+                            <img class="addon-img w-full h-full object-cover transition-transform duration-500 ease-out" src="/assets/images/cups.png" alt="Dry Goods">
+                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                        </div>
+                        <div class="px-3 pt-2.5 pb-3">
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Dry Goods</div>
+                            <div class="addon-price text-[12px] text-white/75">$1.75 / guest</div>
+                        </div>
+                    </div>
+                    <div id="card-soft" onclick="toggle('soft')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-3 select-none">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                            <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
+                        </div>
+                        <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
+                            <img class="addon-img w-full h-full object-cover transition-transform duration-500 ease-out" src="/assets/images/softdrinks.png" alt="Soft Drinks & Mixers">
+                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                        </div>
+                        <div class="px-3 pt-2.5 pb-3">
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Soft Drinks & Mixers</div>
+                            <div class="addon-price text-[12px] text-white/75">$1.50 / guest</div>
+                        </div>
+                    </div>
+                    <div id="card-premium" onclick="toggle('premium')" class="addon-card bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-4 select-none">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                            <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
+                        </div>
+                        <div class="relative h-[88px] sm:h-[100px] overflow-hidden rounded-t-[14px]">
+                            <img class="addon-img w-full h-full object-cover object-[center_45%] transition-transform duration-500 ease-out" src="/assets/images/bar.png" alt="Premium Mixers & Garnishes">
+                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                        </div>
+                        <div class="px-3 pt-2.5 pb-3">
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Premium Mixers & Garnishes</div>
+                            <div class="addon-price text-[12px] text-white/75">$2.50 / guest</div>
+                        </div>
+                    </div>
+                    <div id="card-tip" onclick="toggle('tip')" class="addon-card col-span-2 bg-black/50 backdrop-blur-md border-[1.5px] border-white/10 rounded-2xl cursor-pointer relative overflow-hidden transition-all duration-150 ease-out hover:-translate-y-1 hover:border-white/25 hover:shadow-[0_12px_32px_rgba(0,0,0,0.3)] animate-fade-up-5 select-none">
+                        <div class="addon-tick absolute top-2.5 right-2.5 w-[26px] h-[26px] rounded-full border-2 border-green backdrop-blur-sm flex items-center justify-center z-10">
+                            <img src="/assets/icons/light/check.svg" class="addon-tick-icon opacity-0 scale-0 transition-all duration-150 [transition-timing-function:cubic-bezier(0.34,1.56,0.64,1)]">
+                        </div>
+                        <div class="relative h-[100px] sm:h-[110px] overflow-hidden rounded-t-[14px]">
+                            <img class="addon-img w-full h-full object-cover object-[center_60%] transition-transform duration-500 ease-out" src="/assets/images/gratuity.png" alt="Gratuity">
+                            <div class="addon-overlay absolute inset-0 bg-green/[0.38] opacity-0 transition-opacity duration-150 ease-out"></div>
+                        </div>
+                        <div class="px-3 pt-2.5 pb-3">
+                            <div class="text-[13px] font-semibold text-white leading-tight mb-0.5">Include Gratuity (No Tip Jar)</div>
+                            <div class="addon-price text-[12px] text-white/75">$100 / bartender</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <aside class="lg:sticky lg:top-20">
+                <div class="quote-panel bg-black/50 backdrop-blur-md border border-white/[0.1] rounded-[24px] p-6 sm:p-7 text-white overflow-hidden relative">
+                    <div class="flex items-center gap-2 text-[11px] font-semibold tracking-[0.15em] uppercase text-green-mid mb-5">
+                        <img src="/assets/icons/custom/calculator.svg" class="h-[1em] w-[1em] object-contain">
+                        Your Estimate
+                    </div>
+                    <div class="mb-2">
+                        <div id="row-base" class="flex justify-between items-center py-2.5 text-sm">
+                            <span class="text-white/75 font-normal">Base package</span>
+                            <span class="font-semibold text-white" id="disp-base">$220.00</span>
+                        </div>
+                        <div id="row-extra" class="hidden flex justify-between items-center py-2.5 border-t border-white/[0.06] text-sm">
+                            <span class="text-white/75 font-normal">Extra hours</span>
+                            <span class="font-semibold text-green-mid" id="disp-extra">+$0.00</span>
+                        </div>
+                        <div id="row-addons" class="hidden flex justify-between items-center py-2.5 border-t border-white/[0.06] text-sm">
+                            <span class="text-white/75 font-normal">Add-ons</span>
+                            <span class="font-semibold text-white" id="disp-addons">$0.00</span>
+                        </div>
+                        <div id="row-travel" class="hidden flex justify-between items-center py-2.5 border-t border-white/[0.06] text-sm">
+                            <span class="text-white/75 font-normal">Travel fee</span>
+                            <span class="font-semibold text-white" id="disp-travel">$0.00</span>
+                        </div>
+                    </div>
+                    <div class="h-px bg-white/10 mb-5"></div>
+                    <div class="text-center mb-1.5">
+                        <div class="text-[11px] tracking-[0.14em] uppercase text-white/50 mb-1.5">Total Estimate</div>
+                        <div id="total-number" class="font-regular font-bold text-[44px] sm:text-[52px] text-white leading-none tracking-[-0.02em]">
+                            $220<span class="text-[22px] sm:text-[26px] align-super font-bold">.00</span>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center gap-1.5 bg-white/[0.07] border border-white/[0.12] rounded-full px-4 py-2 text-[13px] font-medium mt-3.5 w-full">
+                        <img src="/assets/icons/light/cocktail.svg" class="h-[1em] w-[1em]">
+                        <span id="disp-bartenders">1 bartender ・ 4 hours</span>
+                    </div>
+                    <div class="mt-2 px-3.5 py-3 rounded-full text-xs text-green-readable bg-green-readable/5 border border-green-readable/50 leading-none text-center">
+                        Alcohol is provided by the Client. We bring certified bartenders, tools & expertise.
+                    </div>
+                </div>
+            </aside>
+        </main>
+        <script src="/scripts/global.js"></script>
+    </body>
 </html>

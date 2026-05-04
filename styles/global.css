@@ -1,0 +1,147 @@
+html {
+  overflow-y: scroll;
+  background-image: url('/assets/images/bar.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-color: #1a0d11;
+}
+
+body {
+  font-family: 'Outfit', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(123, 45, 66, 0.5);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(123, 45, 66, 0.8);
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.addon-card:hover .addon-img {
+  transform: scale(1.08);
+}
+
+.addon-card.active .addon-overlay {
+  opacity: 1;
+}
+
+.addon-card.active .addon-tick {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.quote-panel::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(123, 45, 66, 0.35) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 80% 50%, rgba(123, 45, 66, 0.3) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+#total-number {
+  transition: opacity 0.18s ease;
+}
+
+#event-map {
+  height: 200px;
+  border-radius: 16px;
+  z-index: 0;
+}
+
+.leaflet-container {
+  font-family: 'Outfit', sans-serif;
+}
+
+@keyframes ringPulse {
+  0% {
+    stroke-opacity: 0.55;
+  }
+
+  50% {
+    stroke-opacity: 0.2;
+  }
+
+  100% {
+    stroke-opacity: 0.55;
+  }
+}
+
+.range-ring {
+  animation: ringPulse 3s ease-in-out infinite;
+}
+
+#addr-clear {
+  display: none;
+}
+
+#addr-input:not(:placeholder-shown)~#addr-clear {
+  display: flex;
+}
+
+.leaflet-control-attribution {
+  font-size: 9px !important;
+}
+
+.leaflet-popup-content {
+  font-size: 13px;
+  font-weight: 500;
+  text-align: center;
+  color: #fff;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 6px 14px;
+  border-radius: 50px;
+  background-color: #7b2d42;
+  border: 1px solid #7b2d4280;
+  box-shadow: 0 4px 16px #7b2d4280;
+}
+
+.leaflet-popup-tip {
+  background-color: #7b2d42;
+  width: 14px;
+  height: 14px;
+  box-shadow: none;
+}
+
+.leaflet-popup-tip-container {
+  height: 14px;
+}
