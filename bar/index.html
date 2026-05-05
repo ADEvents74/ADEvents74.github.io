@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Event Service Pricing</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+        <link rel="stylesheet" href="/styles/global.css">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="/scripts/tailwind.js"></script>
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    </head>
+    <body class="text-white min-h-screen relative">
+        <div class="fixed top-0 left-0 w-screen h-screen -z-10 backdrop-blur-xs bg-[#1a0d11]/70"></div>
+        <div class="fixed top-4 left-0 right-0 z-50 flex justify-center px-4">
+            <nav class="bg-black/60 backdrop-blur-md border border-white/[0.12] rounded-full h-12 sm:h-14 flex items-center justify-between gap-4 px-4 sm:px-6 w-full max-w-[1100px]">
+                <a href="/" class="flex items-center gap-2.5 no-underline">
+                    <img src="/assets/icons/light/cocktail.svg" class="w-5 h-5">
+                    <span class="font-black text-sm uppercase italic sm:text-lg text-white">Event Service Pricing</span>
+                </a>
+                <!-- <div class="flex gap-1 items-center justify-center px-2 py-1 rounded-full border border-white/10">
+                    <img id="usa" src="/assets/icons/custom/usa.svg" class="object-cover h-6 w-6 cursor-pointer transition duration-100 ease-in-out">
+                    <img id="colombia" src="/assets/icons/custom/colombia.svg" class="object-cover h-6 w-6 cursor-pointer transition duration-100 ease-in-out">
+                </div> -->
+            </nav>
+        </div>
+        <main class="max-w-[1100px] mx-auto px-4 sm:px-6 pt-24 sm:pt-28 pb-16">
+            <h1 class="text-5xl mb-5">Bartender Service Pricing</h1>
+            <div class="space-y-10 animate-fade-up font-body text-white/70 text-base leading-relaxed">
+                <section>
+                    <h2 class="font-bold italic text-wine-readable text-sm tracking-widest uppercase mb-4">Based on Number of Guests</h2>
+                    <ul class="space-y-3">
+                        <li>
+                            <p class="text-white/90 font-semibold text-sm mb-0.5">Total Hours of Event Time: 4 (minimum)</p>
+                            <p>The "Total Hours of Event Time" is how long the bartender will be at the location. This includes 1.5 hours of set-up time plus the time the bartender will serve drinks and the time it will take him/her to breakdown and clean for departure. For instance: If your event starts at 6:00pm and ends at 8:30pm, we will arrive at 4:30pm to set up, start service at 6:00pm, slowly start closing at 8:15pm and finally stop pouring drinks at 8:30pm and depart.</p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class="text-white/90 font-semibold">Number of Bartenders:</span> 1 bartender for every 75 guests for the best service.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class="text-white/90 font-semibold">Travel Fee</span> (may apply based on distance) — No travel fee for events within a 20-mile radius of bartender location. A one-way travel fee of $1.00 per mile applies outside the 20 miles radius, up to 30 miles. $1.50 per mile after 30 miles.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class="text-white/90 font-semibold">Tip Jar:</span> If NO tip jar is provided, a $100 gratuity per bartender applies. Not included in the price quote and payable to each bartender at the end of service.
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                <span class="text-white/90 font-semibold">Last-Minute Booking:</span> A $100 fee may apply if you book within 7 days prior to your event, regardless of when you receive a quote.
+                            </p>
+                        </li>
+                    </ul>
+                </section>
+                <div class="h-px bg-white/[0.08]"></div>
+                <section>
+                    <h2 class="font-bold italic text-wine-readable text-sm tracking-widest uppercase mb-4">Alcohol Disclosure</h2>
+                    <p class="mb-3">We DO NOT provide alcohol at any event. You will be responsible for providing the alcohol at your event.</p>
+                    <p>You, THE CLIENT, will provide the alcohol – We will gladly provide you with an Alcohol Purchasing List, at your request, which gives you the quantities of each liquor, beer, and wine, which is based on your guest count, along with an estimated cost.</p>
+                </section>
+                <div class="h-px bg-white/[0.08]"></div>
+                <section>
+                    <h2 class="font-bold italic text-wine-readable text-sm tracking-widest uppercase mb-4">"Bartender Only" Package</h2>
+                    <p class="text-white/90 font-semibold mb-3">Package Total: $220.00 (1 bartender)</p>
+                    <p class="mb-3">To Include the Following Bar Tools &amp; Equipment:</p>
+                    <p class="mb-4">Wine key / Bottle opener / Spill mat / Shaker tin &amp; strainer / Pour spouts / Ice bucket / Ice scoop / Empty cooler for clean ice.</p>
+                    <p class="mb-3">This package is ONLY
+                        <span class="text-white/90 font-semibold">$55.00 Per Bartender Per Hour</span> (4 Hour Minimum Requirement Per Bartender. Add $60.00 flat per hour per bartender for each extra hour).
+                    </p>
+                    <p class="mb-3">This is the perfect option if all you need is a BARTENDER. We will provide you with the Bartender(s) you need for your event. The norm is 1 bartender for every 75 guests for the best service. The bartender will arrive, set up the bar using YOUR supplies and equipment to serve your guests! All bartenders are trained and state certified. With this option, you will need to purchase and provide all necessary supplies needed such as a portable bar, coolers, ice, dry goods, mixers, soda, water, and garnish.</p>
+                </section>
+                <div class="h-px bg-white/[0.08]"></div>
+                <section>
+                    <h2 class="font-bold italic text-wine-readable text-sm tracking-widest uppercase mb-4">"Bartender + Add Ons" Package</h2>
+                    <p class="text-white/90 font-semibold mb-3">Your Package Total: $220.00 + Any Add-Ons</p>
+                    <p class="mb-4">Remember that you will need to purchase and provide your own alcohol. Pick any of our Add-Ons for the total cost of this package.</p>
+                    <ul class="space-y-2">
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Front Bar Table rental</span>
+                            <span class="text-white/90 font-semibold shrink-0">$65.00 each</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Back Bar Table rental</span>
+                            <span class="text-white/90 font-semibold shrink-0">$55.00 each</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Cooler(s) for beers and wines</span>
+                            <span class="text-white/90 font-semibold shrink-0">$50.00 each</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Bagged Ice</span>
+                            <span class="text-white/90 font-semibold shrink-0">$1.50 per guest</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Bottled Water</span>
+                            <span class="text-white/90 font-semibold shrink-0">$0.75 per guest</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Dry Goods — Disposable Cups (9oz &amp; 12oz), Cocktail Napkins, Straws, and Cocktail Picks</span>
+                            <span class="text-white/90 font-semibold shrink-0">$1.75 per guest</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Soft Drinks/Mixers — Coke, Diet Coke, Sprite, Ginger Ale, Soda &amp; Tonic Water</span>
+                            <span class="text-white/90 font-semibold shrink-0">$1.50 per guest</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Basic Juice &amp; Garnish Package — Orange, Cranberry, and Pineapple Juice. Limes and lemons.</span>
+                            <span class="text-white/90 font-semibold shrink-0">$1.50 per guest</span>
+                        </li>
+                        <li class="flex justify-between items-baseline gap-4">
+                            <span>Premium Mixers, Juices and Garnishes Package (includes the Basic J&amp;G package) — Sweet and Dry Vermouth, Angostura Bitters, Ginger Beer, Margarita Mix, Triple Sec, Sweet n' Sour, Simple Syrup, Grenadine, Lime Juice, Grapefruit Juice, Lemonade, Oranges, Olives, Maraschino Cherries and Mint.</span>
+                            <span class="text-white/90 font-semibold shrink-0">$2.50 per guest</span>
+                        </li>
+                    </ul>
+                    <div class="mt-4 flex items-center justify-between gap-4 bg-wine/50 border border-wine rounded-xl px-4 py-1.5">
+                        <p class="text-white/80 text-sm font-body">Please choose your options <a href="/" target="_blank" rel="noopener noreferrer" class="text-white underline underline-offset-2">here</a> and email them back for a Final Total of the Quote.</p>
+                        <a href="/" target="_blank" rel="noopener noreferrer" class="transition duration-150 ease-in-out hover:bg-white/10 rounded-lg p-2 -mr-2.5">
+                            <img src="/assets/icons/light/external.svg" class="w-4 h-4 opacity-80 shrink-0">
+                        </a>
+                    </div>
+                </section>
+                <div class="h-px bg-white/[0.08]"></div>
+                <section>
+                    <h2 class="font-bold italic text-wine-readable text-sm tracking-widest uppercase mb-4">Cancellation &amp; Deposit Policy</h2>
+                    <p class="mb-3">To reserve your event date, we require a 30% deposit. If you need to cancel for any reason, 15 days prior to your event, we will refund your deposit minus a 10% "SAVE MY DATE" fee. If you were to cancel within 10 days of your event, your initial deposit is non-refundable. The final 70% payment is due two days prior to your event.</p>
+                    <p>Some events may require more set-up and breakdown time. We quote for 1.5 hours of set-up before the event and .5 hours breakdown time after the event. The amount of set-up time may fluctuate for your event, and we will address this as your date approaches.</p>
+                </section>
+                <div class="h-px bg-white/[0.08]"></div>
+                <section class="space-y-3">
+                    <p>
+                        <span class="text-white/90 font-semibold">PRICING GUARANTEE:</span> The pricing in this proposal is good for 30 days after it is received. Once a deposit is received, pricing is secured. After 30 days we will send you a new proposal if needed.
+                    </p>
+                    <p>
+                        <span class="text-white/90 font-semibold">CONTRACTED TIMES:</span> The "set-up" time (1.5 hours typically) on the contract is when your bartender(s) will arrive to set up for the event, the "start" time is when we will be prepared to start pouring drinks and the "end" time is when we stop pouring drinks. We also bill for .5 hours of clean-up time. You can request your bartender(s) to stay longer during the actual event, and we will add their hourly charge which will be paid immediately upon the event.
+                    </p>
+                </section>
+            </div>
+        </main>
+        <script src="/scripts/global.js"></script>
+    </body>
+</html>

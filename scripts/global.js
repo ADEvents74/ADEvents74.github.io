@@ -1,9 +1,12 @@
 var addonData = {
+    frontbar: { price: 65, type: "per-unit" },
+    backbar: { price: 55, type: "per-unit" },
+    cooler: { price: 50, type: "per-unit" },
     ice: { price: 1.5, type: "per-guest" },
     dry: { price: 1.75, type: "per-guest" },
     soft: { price: 1.5, type: "per-guest" },
     premium: { price: 2.5, type: "per-guest" },
-    tip: { price: 100, type: "per-bartender" },
+    tip: { price: 100, type: "per-bartender" }
 };
 
 var addonState = {
@@ -12,6 +15,9 @@ var addonState = {
     soft: false,
     premium: false,
     tip: false,
+    frontbar: 0,
+    backbar: 0,
+    cooler: 0
 };
 
 const usa = document.getElementById("usa");
@@ -325,6 +331,23 @@ function nudge(id, delta) {
     calculate();
 }
 
+function setQty(id, delta) {
+    addonState[id] = Math.max(0, (addonState[id] || 0) + delta);
+    document.getElementById("qty-" + id).textContent = addonState[id];
+
+    var card = document.getElementById("card-" + id);
+    var price = card.querySelector(".addon-price");
+
+    if (addonState[id] > 0) {
+        card.classList.add("active", "!border-wine", "shadow-[0_6px_28px_rgba(26,122,74,0.2)]");
+        price.classList.add("!text-wine", "!font-medium");
+    } else {
+        card.classList.remove("active", "!border-wine", "shadow-[0_6px_28px_rgba(26,122,74,0.2)]");
+        price.classList.remove("!text-wine", "!font-medium");
+    }
+    calculate();
+}
+
 function fmt(n) {
     return country === "usa"
         ? `$${n.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
@@ -374,29 +397,38 @@ function calculate(isTranslation) {
     var bartenders = Math.max(1, Math.ceil(guests / 75));
     var base = bartenders * 220;
     var extraHrs = hours > 4 ? (hours - 4) * 60 * bartenders : 0;
+    var rentals = 0;
     var addons = 0;
     for (var id in addonData) {
         if (!addonState[id]) continue;
         var a = addonData[id];
-        addons +=
-            a.type === "per-guest" ? a.price * guests : a.price * bartenders;
+        var amount = a.type === "per-guest" ? a.price * guests
+                : a.type === "per-bartender" ? a.price * bartenders
+                : a.price * addonState[id];
+        if (a.type === "per-unit") rentals += amount;
+        else addons += amount;
     }
+
+    document.getElementById("row-rentals").style.display = rentals > 0 ? "flex" : "none";
+    document.getElementById("row-addons").style.display = addons > 0 ? "flex" : "none";
     document.getElementById("row-extra").style.display = extraHrs > 0 ? "flex" : "none";
     document.getElementById("row-addons").style.display = addons > 0 ? "flex" : "none";
     document.getElementById("row-travel").style.display = travelFee > 0 ? "flex" : "none";
     
     var totalEl = document.getElementById("total-number");
-    var total = fmtBig(base + extraHrs + addons + travelFee);
+    var total = fmtBig(base + extraHrs + rentals + addons + travelFee);
     if (isTranslation === true) {
       dropChange(document.getElementById("disp-base"), "textContent", fmt(base));
       dropChange(document.getElementById("disp-extra"), "textContent", "+" + fmt(extraHrs));
-      dropChange(document.getElementById("disp-addons"), "textContent", fmt(addons));
+      dropChange(document.getElementById("disp-rentals"), "textContent", fmt(rentals));
+        dropChange(document.getElementById("disp-addons"), "textContent", fmt(addons));
       dropChange(document.getElementById("disp-travel"), "textContent", fmt(travelFee));
       dropChange(document.getElementById("disp-bartenders"), "textContent", `${bartenders} bartender${bartenders > 1 ? "s" : ""} ・ ${hours} ${country === "usa" ? "hours" : "horas"}`);
       dropChange(totalEl, "innerHTML", total);
     } else {
       document.getElementById("disp-base").textContent = fmt(base);
       document.getElementById("disp-extra").textContent = "+" + fmt(extraHrs);
+      document.getElementById("disp-rentals").textContent = fmt(rentals);
       document.getElementById("disp-addons").textContent = fmt(addons);
       document.getElementById("disp-travel").textContent = fmt(travelFee);
       document.getElementById("disp-bartenders").textContent = `${bartenders} bartender${bartenders > 1 ? "s" : ""} ・ ${hours} ${country === "usa" ? "hours" : "horas"}`;
